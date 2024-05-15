@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-inline unsigned root(unsigned x, unsigned n)
+inline float nthRoot(float x, int n)
 {
     switch (n)
     {
@@ -22,21 +22,31 @@ inline unsigned root(unsigned x, unsigned n)
 
 int main(int argc, char const *argv[])
 {
-    if (argc > 3 | argc < 3)
+    if (argc > 4 | argc < 4)
     {
-        printf("2 arguments expected\n");
+        printf("3 arguments expected\n");
         return 22;
     }
     // initialize variables
-    int start = atoi(argv[1]);
-    int interest = atoi(argv[2]);
+    float start = atof(argv[1]);
+    float interestRate = atof(argv[2]);
+    float minimum = atof(argv[3]);
+    if (argc == 5)
+    {
+        float maximum = atof(argv[4]);
+    }
 
     // debugging purposes
-    
-    /* 
+
+    /*
     printf("%i, %i", argc, argv[0]);
     printf("start = %i, interest = %i", start, interest);
     */
+
+    float preciseInterestRate = roundf(nthRoot(interestRate, 12));
+    float result = start + (start * preciseInterestRate) - minimum;
+    printf("%f", result);
+
 
     return 0;
 }
